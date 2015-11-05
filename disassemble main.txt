@@ -1,0 +1,60 @@
+(gdb) disassemble main
+Dump of assembler code for function main:
+   0x000000000040078c <+0>:     push   %rbp
+   0x000000000040078d <+1>:     push   %rbx
+   0x000000000040078e <+2>:     sub    $0x8,%rsp
+   0x0000000000400792 <+6>:     mov    %edi,%ebx
+   0x0000000000400794 <+8>:     mov    %rsi,%rbp
+   0x0000000000400797 <+11>:    callq  0x4005d0 <getpid@plt>
+   0x000000000040079c <+16>:    mov    %eax,%edi
+   0x000000000040079e <+18>:    callq  0x4005f0 <srand@plt>
+   0x00000000004007a3 <+23>:    cmp    $0x1,%ebx
+   0x00000000004007a6 <+26>:    jle    0x4007c8 <main+60>
+   0x00000000004007a8 <+28>:    mov    0x8(%rbp),%rax
+   0x00000000004007ac <+32>:    cmpb   $0x72,(%rax)
+   0x00000000004007af <+35>:    jne    0x4007c8 <main+60>
+   0x00000000004007b1 <+37>:    callq  0x400600 <rand@plt>
+   0x00000000004007b6 <+42>:    mov    %eax,%edx
+   0x00000000004007b8 <+44>:    sar    $0x1f,%edx
+   0x00000000004007bb <+47>:    shr    $0x1b,%edx
+   0x00000000004007be <+50>:    lea    (%rax,%rdx,1),%ebx
+   0x00000000004007c1 <+53>:    and    $0x1f,%ebx
+   0x00000000004007c4 <+56>:    sub    %edx,%ebx
+   0x00000000004007c6 <+58>:    jmp    0x4007cd <main+65>
+   0x00000000004007c8 <+60>:    mov    $0x0,%ebx
+   
+   0x00000000004007cd <+65>:    lea    0x2005ed(%rip),%edi        # 0x600dc0 <Name>
+   0x00000000004007d3 <+71>:    and    $0xfffff000,%edi
+   0x00000000004007d9 <+77>:    mov    $0x7,%edx
+   0x00000000004007de <+82>:    mov    $0x1,%esi
+   0x00000000004007e3 <+87>:    callq  0x400580 <mprotect@plt>
+   0x00000000004007e8 <+92>:    mov    $0x400998,%edi
+   0x00000000004007ed <+97>:    callq  0x4005a0 <puts@plt>
+   0x00000000004007f2 <+102>:   mov    $0x400859,%edx
+   0x00000000004007f7 <+107>:   mov    %ebx,%esi
+   0x00000000004007f9 <+109>:   mov    $0x600dc0,%edi
+   0x00000000004007fe <+114>:   callq  0x4006fe <readString>
+   
+   0x0000000000400803 <+119>:   mov    $0x600dc0,%esi
+   0x0000000000400808 <+124>:   mov    $0x4009ab,%edi
+   0x000000000040080d <+129>:   mov    $0xd,%ecx
+   0x0000000000400812 <+134>:   repz cmpsb %es:(%rdi),%ds:(%rsi)
+   0x0000000000400814 <+136>:   seta   %dl
+   0x0000000000400817 <+139>:   setb   %al
+   0x000000000040081a <+142>:   cmp    %al,%dl
+   0x000000000040081c <+144>:   jne    0x400825 <main+153>
+   
+   0x000000000040081e <+146>:   movb   $0x43,0x20055f(%rip)        # 0x600d84 <grade>
+   
+   0x0000000000400825 <+153>:   mov    $0x600dc0,%esi
+   0x000000000040082a <+158>:   mov    $0x4009b8,%edi
+   0x000000000040082f <+163>:   mov    $0x0,%eax
+---Type <return> to continue, or q <return> to quit---return
+   0x0000000000400834 <+168>:   callq  0x400590 <printf@plt>
+   0x0000000000400839 <+173>:   movsbl 0x200544(%rip),%esi        # 0x600d84 <grade>
+   0x0000000000400840 <+180>:   mov    $0x4009e8,%edi
+   0x0000000000400845 <+185>:   mov    $0x0,%eax
+   0x000000000040084a <+190>:   callq  0x400590 <printf@plt>
+   0x000000000040084f <+195>:   mov    $0x0,%edi
+   0x0000000000400854 <+200>:   callq  0x4005b0 <exit@plt>
+End of assembler dump.

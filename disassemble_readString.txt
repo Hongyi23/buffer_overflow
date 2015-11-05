@@ -1,0 +1,50 @@
+(gdb) disassemble readString
+Dump of assembler code for function readString:
+   0x00000000004006fe <+0>:     push   %rbp
+   0x00000000004006ff <+1>:     mov    %rsp,%rbp
+   0x0000000000400702 <+4>:     push   %r13
+   0x0000000000400704 <+6>:     push   %r12
+   0x0000000000400706 <+8>:     push   %rbx
+   0x0000000000400707 <+9>:     sub    $0x18,%rsp
+   0x000000000040070b <+13>:    mov    %rdi,%r13
+   0x000000000040070e <+16>:    mov    %rdx,-0x28(%rbp)
+   0x0000000000400712 <+20>:    lea    0x24(%rsi),%eax
+   0x0000000000400715 <+23>:    cltq
+   0x0000000000400717 <+25>:    add    $0x1e,%rax
+   0x000000000040071b <+29>:    and    $0xfffffffffffffff0,%rax
+   0x000000000040071f <+33>:    sub    %rax,%rsp
+   0x0000000000400722 <+36>:    lea    0xf(%rsp),%r12
+   0x0000000000400727 <+41>:    and    $0xfffffffffffffff0,%r12
+   0x000000000040072b <+45>:    mov    $0x0,%ebx
+   0x0000000000400730 <+50>:    mov    0x200669(%rip),%rdi        # 0x600da0 <stdin@@GLIBC_2.2.5>
+   0x0000000000400737 <+57>:    callq  0x4005e0 <fgetc@plt>
+   0x000000000040073c <+62>:    cmp    $0xffffffffffffffff,%eax
+   0x000000000040073f <+65>:    je     0x400752 <readString+84>
+   0x0000000000400741 <+67>:    cmp    $0xa,%eax
+   0x0000000000400744 <+70>:    je     0x400752 <readString+84>
+   
+   0x0000000000400746 <+72>:    movslq %ebx,%rdx
+   0x0000000000400749 <+75>:    mov    %al,(%r12,%rdx,1)
+   0x000000000040074d <+79>:    add    $0x1,%ebx
+   0x0000000000400750 <+82>:    jmp    0x400730 <readString+50>
+   0x0000000000400752 <+84>:    movslq %ebx,%rbx
+   0x0000000000400755 <+87>:    movb   $0x0,(%r12,%rbx,1)
+   0x000000000040075a <+92>:    mov    %r13,%rax
+   0x000000000040075d <+95>:    lea    0x24(%r12),%rcx
+   0x0000000000400762 <+100>:   movzbl (%r12),%edx
+   0x0000000000400767 <+105>:   mov    %dl,(%rax)
+   0x0000000000400769 <+107>:   add    $0x1,%r12
+   0x000000000040076d <+111>:   add    $0x1,%rax
+   0x0000000000400771 <+115>:   cmp    %rcx,%r12
+   0x0000000000400774 <+118>:   jne    0x400762 <readString+100>
+   0x0000000000400776 <+120>:   mov    %r13,%rdi
+   0x0000000000400779 <+123>:   mov    $0x0,%eax
+   0x000000000040077e <+128>:   callq  *-0x28(%rbp)
+   0x0000000000400781 <+131>:   lea    -0x18(%rbp),%rsp
+   0x0000000000400785 <+135>:   pop    %rbx
+   0x0000000000400786 <+136>:   pop    %r12
+   0x0000000000400788 <+138>:   pop    %r13
+   0x000000000040078a <+140>:   leaveq
+   0x000000000040078b <+141>:   retq
+---Type <return> to continue, or q <return> to quit---return
+End of assembler dump.
