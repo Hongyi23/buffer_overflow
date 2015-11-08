@@ -17,7 +17,7 @@ void sandbox_handler(int sig, siginfo_t *siginfo, void *ucp)
 		mprotect((void*)((unsigned int)main & 0xfffffffffffff000), 1, PROT_READ | PROT_WRITE);			
 		mprotect((void*)((unsigned int)readString & 0xfffffffffffff000), 1, PROT_READ | PROT_WRITE | PROT_EXEC);
 		ret_addr = *(int *)(*(ucontext_t *)ucp).uc_mcontext.gregs[15];
-	} else if (siginfo->si_addr  == ret_addr) {
+	} else if (siginfo->si_addr == ret_addr) {
         mprotect((void*)((unsigned int)main & 0xfffffffffffff000), 1, PROT_READ | PROT_WRITE | PROT_EXEC);
         mprotect((void*)((unsigned int)readString & 0xfffffffffffff000), 1, PROT_READ | PROT_WRITE);
 	} else {
